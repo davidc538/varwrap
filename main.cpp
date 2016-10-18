@@ -362,19 +362,27 @@ T test(T val)
 int main(int argc, char** argv)
 {
 	const float val = 3.0f;
+	const unsigned int test_num = 4;
 
-	VarWrap<float, Mangler<float>, Mangler<float>, EmptyOnWrite<float>, EmptyOnRead<float>> vwf1 = val;
+	VarWrap<float, Mangler<float>, Mangler<float>, OnReadWriteCout<float>, OnReadWriteCout<float>> vwf1 = val;
 	VarWrap<float, Mangler<float>, Mangler<float>, EmptyOnWrite<float>, EmptyOnRead<float>> vwf2 = val;
 
 	float nvwf = val;
 
 	VWFloat vwf = val;
 
-	float vals[4];
+	float vals[test_num];
 	vals[0] = test(val);
 	vals[1] = test(vwf1).inner();
 	vals[2] = test(vwf2).inner();
 	vals[3] = test(vwf).inner();
 
-	std::cin.get();
+	std::cout << std::endl;
+
+	for (unsigned int i = 0; i < test_num; i++)
+	{
+		std::cout << vals[i] << std::endl;
+	}
+
+	return 0;
 }
