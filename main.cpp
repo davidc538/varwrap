@@ -283,7 +283,7 @@ public:
 	inline void operator%=(U other)
 	{
 		T t = inner();
-		t %= var;
+		t %= other.inner();
 		set(t);
 	}
 
